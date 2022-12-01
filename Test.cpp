@@ -24,7 +24,7 @@ int cmp64(const str64 *a,const str64 *b){
 
 /******** Tests *********/
 
-int seed=100000001;
+int seed=12345678;
 int rand(int k){
 	seed=seed*1234565+1;
 	return (int)(((long long)(seed&0x7fffffff)*k)>>31);
@@ -97,14 +97,14 @@ void Check(SORT_TYPE *arr,int *KeyCntr,int Len,int NKey,bool alg){
 
 void CheckTwo(SORT_TYPE *A,int *Keys,int L,int NK){
 	int h=seed;
-	Check(A,Keys,L,NK,false);
+	//Check(A,Keys,L,NK,false);
 	seed=h;
 	Check(A,Keys,L,NK,true);
 }
 
 
 
-void main(){
+int main(){
 	int NMax=100000000;
 	int NMaxKey=200000;
 	SORT_TYPE *A=new SORT_TYPE[NMax];
@@ -122,19 +122,20 @@ void main(){
 		}
 	}
 #else
-	CheckTwo(A,Keys,1000000,1023);
-	CheckTwo(A,Keys,1000000,2047);
-	CheckTwo(A,Keys,10000000,4095);
-	CheckTwo(A,Keys,10000000,8191);
+	//CheckTwo(A,Keys,1000000,1023);
+	//CheckTwo(A,Keys,1000000,2047);
+	//CheckTwo(A,Keys,10000000,4095);
+    //CheckTwo(A,Keys,10000000,8191);
 	CheckTwo(A,Keys,100000000,16383);
-	CheckTwo(A,Keys,100000000,32767);
-	CheckTwo(A,Keys,100000000,32767);
-	CheckTwo(A,Keys,100000000,16383);
-	CheckTwo(A,Keys,10000000,8191);
-	CheckTwo(A,Keys,10000000,4095);
-	CheckTwo(A,Keys,1000000,2047);
-	CheckTwo(A,Keys,1000000,1023);
-
+	CheckTwo(A,Keys,100000000,165534);
+	//CheckTwo(A,Keys,1000000000,165534);
+	//CheckTwo(A,Keys,100000000,16383);
+	//CheckTwo(A,Keys,10000000,8191);
+	//CheckTwo(A,Keys,10000000,4095);
+	//CheckTwo(A,Keys,1000000,2047);
+	//CheckTwo(A,Keys,1000000,1023);
 #endif
+
+    return 0;
 }
 
